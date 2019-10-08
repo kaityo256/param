@@ -16,16 +16,16 @@ private:
   }
 
 public:
-  parameter(const char *filename)
+  parameter(const std::string filename)
       : valid(true) {
     loadfromfile(filename);
   }
 
-  bool is_valid() const {
+  explicit operator bool() const {
     return valid;
-  }
+  };
 
-  void loadfromfile(const char *filename) {
+  void loadfromfile(const std::string filename) {
     std::ifstream is(filename);
     if (is.fail()) {
       std::cerr << "Could not open file " << filename << std::endl;
