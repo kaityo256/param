@@ -36,6 +36,9 @@ public:
   void readfromstream(std::istream &is) {
     std::string line;
     while (getline(is, line)) {
+      if (line.length() > 0 && line[0] == '#') {
+        continue;
+      }
       size_t index = line.find("=");
       if (std::string::npos != index) {
         std::string key = line.substr(0, index);
