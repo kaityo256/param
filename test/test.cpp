@@ -1,4 +1,4 @@
-#include "param.hpp"
+#include "../param.hpp"
 #include <iostream>
 
 int main() {
