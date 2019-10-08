@@ -62,7 +62,7 @@ public:
 };
 
 template <>
-bool parameter::get(std::string key, bool value) {
+bool parameter::get<bool>(std::string key, bool value) {
   if (!contains(key)) {
     return value;
   }
@@ -77,6 +77,34 @@ template <>
 bool parameter::get(std::string key) {
   check_key(key);
   return get<bool>(key, false);
+}
+
+template <>
+int parameter::get(std::string key, int value) {
+  if (!contains(key)) {
+    return value;
+  }
+  return std::stoi(params[key]);
+}
+
+template <>
+int parameter::get(std::string key) {
+  check_key(key);
+  return get<int>(key, 0.0);
+}
+
+template <>
+double parameter::get(std::string key, double value) {
+  if (!contains(key)) {
+    return value;
+  }
+  return std::stod(params[key]);
+}
+
+template <>
+double parameter::get(std::string key) {
+  check_key(key);
+  return get<double>(key, 0.0);
 }
 
 } // namespace param
