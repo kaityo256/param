@@ -25,6 +25,7 @@ SOFTWARE.
 #include <fstream>
 #include <iostream>
 #include <map>
+#include <string>
 
 namespace param {
 
@@ -116,7 +117,7 @@ int parameter::get(std::string key, int value) {
 template <>
 int parameter::get(std::string key) {
   check_key(key);
-  return get<int>(key, 0.0);
+  return get<int>(key, 0);
 }
 
 template <>
