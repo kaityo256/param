@@ -29,6 +29,20 @@ SOFTWARE.
 
 namespace param {
 
+std::string trim(const std::string &str) {
+  size_t start = 0;
+  while (start < str.size() && std::isspace(static_cast<unsigned char>(str[start]))) {
+    ++start;
+  }
+
+  size_t end = str.size();
+  while (end > start && std::isspace(static_cast<unsigned char>(str[end - 1]))) {
+    --end;
+  }
+
+  return str.substr(start, end - start);
+}
+
 typedef std::map<std::string, std::string> ptype;
 class parameter {
 private:
@@ -67,6 +81,8 @@ public:
       if (std::string::npos != index) {
         std::string key = line.substr(0, index);
         std::string value = line.substr(index + 1, line.length());
+        key = trim(key);
+        value = trim(value);
         params.insert(ptype::value_type(key, value));
       }
     }
