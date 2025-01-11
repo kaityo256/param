@@ -13,6 +13,7 @@ int main() {
   std::cout << "Reading bool named \"bool\": " << param.get<bool>("bool") << std::endl;
   std::cout << "Reading int named \"int\": " << param.get<int>("int") << std::endl;
   std::cout << "Reading double named \"double\": " << param.get<double>("double") << std::endl;
+  std::cout << "Reading double named \"str\": " << param.get<std::string>("str") << std::endl;
   std::cout << std::endl;
 
   std::cout << "Read non-existing values" << std::endl;

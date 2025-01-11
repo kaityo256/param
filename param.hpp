@@ -109,7 +109,7 @@ bool parameter::get<bool>(std::string key, bool value) {
   if (!contains(key)) {
     return value;
   }
-  if ("yes" == params[key] || "Yes" == params[key]) {
+  if ("yes" == params[key] || "Yes" == params[key] || "true" == params[key] || "True" == params[key]) {
     return true;
   } else {
     return false;
@@ -148,6 +148,20 @@ template <>
 double parameter::get(std::string key) {
   check_key(key);
   return get<double>(key, 0.0);
+}
+
+template <>
+std::string parameter::get(std::string key, std::string value) {
+  if (!contains(key)) {
+    return value;
+  }
+  return params[key];
+}
+
+template <>
+std::string parameter::get(std::string key) {
+  check_key(key);
+  return get<std::string>(key, "");
 }
 
 } // namespace param
